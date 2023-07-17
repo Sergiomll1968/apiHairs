@@ -18,7 +18,7 @@ export async function register(req, res) {
 
   if (!username || !password || !mail) {
     res.status(400);
-    res.statusText('Empty required params'); // ************************** */
+    res.json('Empty required params');
     return;
   }
 
