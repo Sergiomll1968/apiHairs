@@ -28,9 +28,9 @@ export async function create({
   return newUser;
 }
 
-export async function getByEmail({ email }) {
+export async function getByEmail({ mail }) {
   const user = await userModel
-    .findOne({ mail: email });
+    .findOne({ mail });
   return user;
 }
 

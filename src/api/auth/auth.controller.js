@@ -17,21 +17,22 @@ export async function register(req, res) {
   let token;
 
   if (!username || !password || !mail) {
-    res.status(400);
-    res.json({ msg: 'Empty required params' });
+    const resobj = { ok: false, statusText: 'Empty required params' };
+    res.json(resobj);
     return;
   }
 
   if (!isValidEmail(mail)) {
-    res.status(400);
-    res.json('Invalid email');
+    const resobj = { ok: false, statusText: 'Invalid email' };
+    res.json(resobj);
     return;
   }
 
   const userExists = await usersRepository.getByEmail({ mail });
+
   if (userExists) {
-    res.status(400);
-    res.json('User exists');
+    const resobj = { ok: false, statusText: 'Email exists' };
+    res.json(resobj);
     return;
   }
 
