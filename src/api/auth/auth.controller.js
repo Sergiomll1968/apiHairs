@@ -28,10 +28,18 @@ export async function register(req, res) {
     return;
   }
 
-  const userExists = await usersRepository.getByEmail({ mail });
+  const userEmailExists = await usersRepository.getByEmail({ mail });
 
-  if (userExists) {
+  if (userEmailExists) {
     const resobj = { ok: false, statusText: 'Email exists' };
+    res.json(resobj);
+    return;
+  }
+
+  const usernameExists = await usersRepository.getByUsername({ username });
+
+  if (usernameExists) {
+    const resobj = { ok: false, statusText: 'Username exists' };
     res.json(resobj);
     return;
   }
