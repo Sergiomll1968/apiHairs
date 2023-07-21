@@ -82,7 +82,5 @@ export async function changePassword(req, res) {
 }
 
 export async function getUsernameByToken(req, res) {
-  const { token } = req.body;
-  const usernameByToken = await userService.getUsernameByToken({ token });
-  res.json(usernameByToken);
+  res.json(req.user);
 }

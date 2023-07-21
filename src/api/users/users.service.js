@@ -82,16 +82,3 @@ export async function getByUsername({ username }) {
   const user = await usersRepo.getByUsername({ username });
   return user;
 }
-
-export async function getUsernameByToken({ token }) {
-  let usernameByToken;
-  jwt.verify(token, JWT_SECRET, async (error, payload) => {
-    if (error) {
-      const myError = { status: 403, message: 'Token error' };
-      throw new Error(JSON.stringify(myError));
-    }
-    usernameByToken = payload.username;
-  });
-  const username = await usersRepo.getByUsername({ usernameByToken });
-  return username;
-}
