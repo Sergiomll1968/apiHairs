@@ -106,6 +106,15 @@ export async function login({ username, password }) {
     throw new Error(JSON.stringify(myError));
   }
 
+  if (!dbUser.confirmed) {
+    const myError = {
+      status: 401,
+      message: 'User not confirmed',
+    };
+
+    throw new Error(JSON.stringify(myError));
+  }
+
   const token = getToken({ username: dbUser.username });
   if (!token) {
     const myError = {
