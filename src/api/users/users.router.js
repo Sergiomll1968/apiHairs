@@ -20,4 +20,6 @@ router.patch(
   usersController.patchId,
 );
 
+router.get('/getuserbytoken', usersController.getUsernameByToken);
+
 export default router;
