@@ -55,7 +55,7 @@ export async function register({
     await transporter.sendMail({
       from: '"FullStack PartTime" <correothebridge01@gmail.com>',
       to: mail,
-      subject: 'Confirma tu registro huevón',
+      subject: 'Confirma tu registro.',
       html: `<img src="https://static.vecteezy.com/system/resources/previews/000/599/237/large_2x/hair-and-face-salon-logo-vector-templates.jpg" width="250px">
       <h3>Bienvenido, estás a un paso de registrarte🚶</h3>
     <h2><a href="${url}">👉 Click aqui para confirmar tu registro 👈</a></h2>
