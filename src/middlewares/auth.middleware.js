@@ -20,8 +20,11 @@ function middleware(req, res, next) {
 
   const requestUrl = req.url;
   if (!req.url) {
+    unauthorized(res);
     console.log('No req.url!');
     return;
+  } else {
+    console.log(req.url);
   }
 
   const isPublicRoute = publicRoutes.some((publicRoute) => {
