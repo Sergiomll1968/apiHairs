@@ -20,8 +20,7 @@ function middleware(req, res, next) {
 
   const requestUrl = req.url;
   if (!req.url) {
-    console.log('!req.url');
-    unauthorized(res);
+    console.log('No req.url!');
     return;
   }
 
