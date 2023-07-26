@@ -14,7 +14,7 @@ router.use('/bookings', bookingsRouter);
 router.use('/services', servicesRouter);
 router.use('/users', (req,res,next) => {
   console.log('routerjs');
-  next();
+  return next();
 }, usersRouter);
 
 router.post('/register', authController.register);

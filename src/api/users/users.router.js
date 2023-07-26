@@ -22,7 +22,7 @@ router.patch(
 
 router.get('/getusernamebytoken', (req,res,next) => {
   console.log('getusernamebytoken router');
-  next();
+  return next();
 }, usersController.getUsernameByToken);
 
 export default router;
