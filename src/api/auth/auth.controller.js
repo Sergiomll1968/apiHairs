@@ -83,5 +83,5 @@ export async function login(req, res) {
 export async function confirm(req, res) {
   const { emailtoken } = req.params;
   await authService.confirm({ emailtoken });
-  res.json('Usuario Confirmado HTML');
+  res.redirect('https://my-bookings.vercel.app/');
 }
