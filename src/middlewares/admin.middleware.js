@@ -1,5 +1,9 @@
-import unauthorized from './auth.middleware.js';
 import * as bookingsService from '../api/bookings/bookings.service.js';
+
+function unauthorized(res) {
+  res.status(401);
+  res.json('Unauthorized');
+}
 
 function middlewareAdmin(req, res, next, { allowOwnUser = false, collection = undefined }) {
   let isOwnUser = false;
