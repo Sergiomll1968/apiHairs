@@ -20,9 +20,6 @@ router.patch(
   usersController.patchId,
 );
 
-router.get('/getusernamebytoken', (req,res,next) => {
-  console.log('getusernamebytoken router');
-  return next();
-}, usersController.getUsernameByToken);
+router.get('/getusernamebytoken', usersController.getUsernameByToken);
 
 export default router;

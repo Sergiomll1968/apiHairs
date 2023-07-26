@@ -12,10 +12,7 @@ const router = Router();
 router.use('/awards', awardsRouter);
 router.use('/bookings', bookingsRouter);
 router.use('/services', servicesRouter);
-router.use('/users', (req,res,next) => {
-  console.log('routerjs');
-  return next();
-}, usersRouter);
+router.use('/users', usersRouter);
 
 router.post('/register', authController.register);
 router.post('/login', authController.login);
