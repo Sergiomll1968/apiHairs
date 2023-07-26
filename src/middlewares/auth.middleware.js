@@ -20,8 +20,8 @@ function middleware(req, res, next) {
 
   const requestUrl = req.url;
   if (!req.url) {
-    unauthorized(res);
     console.log('No req.url!');
+    unauthorized(res);
     return;
   } else {
     console.log(req.url);
@@ -37,6 +37,7 @@ function middleware(req, res, next) {
     return;
   }
 
+  console.log('No es publica');
   const token = req.headers.authorization;
 
   if (!token) {
@@ -44,6 +45,7 @@ function middleware(req, res, next) {
     return;
   }
 
+  console.log('Tiene token');
   jwt.verify(token, process.env.JWT_SECRET, async (error, payload) => {
     if (error) {
       console.error('ERROR!', error.message);
@@ -51,6 +53,7 @@ function middleware(req, res, next) {
     }
 
     req.user = await usersService.getByUsername({ username: payload.username });
+    console.log('Id user', req.user._id);
     return next();
   });
 }
