@@ -19,6 +19,7 @@ function middleware(req, res, next) {
   ];
 
   const requestUrl = req.url;
+  console.log('req.url', req.url);
 
   const isPublicRoute = publicRoutes.some((publicRoute) => {
     const includePublicRoute = requestUrl.includes(publicRoute);
