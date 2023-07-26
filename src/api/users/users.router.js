@@ -5,6 +5,8 @@ import admin from '../../middlewares/admin.middleware.js';
 const router = Router();
 
 router.get('/all', admin, usersController.getAll);
+router.get('/getusernamebytoken', usersController.getUsernameByToken);
+
 router.get(
   '/:id',
   (req, res, next) => admin(req, res, next, { allowOwnUser: true, collection: 'users' }),
@@ -19,7 +21,5 @@ router.patch(
   (req, res, next) => admin(req, res, next, { allowOwnUser: true, collection: 'users' }),
   usersController.patchId,
 );
-
-router.get('/getusernamebytoken', usersController.getUsernameByToken);
 
 export default router;
