@@ -9,7 +9,7 @@ function middlewareAdmin(req, res, next, { allowOwnUser = false, collection = un
   let isOwnUser = false;
   if (allowOwnUser) {
     if (collection === 'bookings') {
-      const booking = bookingsService.getById(req.params.id);
+      const booking = req.params.id ? bookingsService.getById(req.params.id) : req.body;
       isOwnUser = booking.userId.toString() === req.user._id.toString();
     } else {
       isOwnUser = req.user._id.toString() === req.params.id;

@@ -120,6 +120,7 @@ export async function login({ username, password }) {
 
     throw new Error(JSON.stringify(myError));
   }
-
-  return token;
+  const userDataAndtoken = { ...dbUser, token };
+  delete userDataAndtoken.password;
+  return userDataAndtoken;
 }

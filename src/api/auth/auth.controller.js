@@ -17,13 +17,13 @@ export async function register(req, res) {
   let token;
 
   if (!username || !password || !mail) {
-    const resobj = { ok: false, statusText: 'Empty required params' };
+    const resobj = { ok: false, message: 'Empty required params' };
     res.json(resobj);
     return;
   }
 
   if (!isValidEmail(mail)) {
-    const resobj = { ok: false, statusText: 'Invalid email' };
+    const resobj = { ok: false, message: 'Invalid email' };
     res.json(resobj);
     return;
   }
@@ -31,7 +31,7 @@ export async function register(req, res) {
   const userEmailExists = await usersRepository.getByEmail({ mail });
 
   if (userEmailExists) {
-    const resobj = { ok: false, statusText: 'Email exists' };
+    const resobj = { ok: false, message: 'Email exists' };
     res.json(resobj);
     return;
   }
@@ -39,7 +39,7 @@ export async function register(req, res) {
   const usernameExists = await usersRepository.getByUsername({ username });
 
   if (usernameExists) {
-    const resobj = { ok: false, statusText: 'Username exists' };
+    const resobj = { ok: false, message: 'Username exists' };
     res.json(resobj);
     return;
   }
@@ -60,7 +60,7 @@ export async function register(req, res) {
 
 export async function login(req, res) {
   const { username, password } = req.body;
-  let token;
+  let userDataAndToken;
 
   if (!username || !password) {
     const resobj = { ok: false, statusText: 'Empty required params' };
@@ -69,15 +69,14 @@ export async function login(req, res) {
   }
 
   try {
-    token = await authService.login({ username, password });
+    userDataAndToken = await authService.login({ username, password });
   } catch (err) {
     const myError = JSON.parse(err.message);
     // res.status(myError.status);
     res.json(myError);
     return;
   }
-
-  res.json({ token });
+  res.json(userDataAndToken);
 }
 
 export async function confirm(req, res) {
