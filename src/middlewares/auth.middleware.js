@@ -7,6 +7,18 @@ function unauthorized(res) {
 }
 
 function middleware(req, res, next) {
+  // Websites to allow
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  // Request methods to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+
+  // Request headers to allow
+  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, X-Access-Token, XKey, Authorization');
+
+  // Request credentials
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
   const publicRoutes = [
     '/login',
     '/register',
