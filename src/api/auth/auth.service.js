@@ -68,23 +68,6 @@ export async function register({
   return message;
 }
 
-export async function confirm({ emailtoken }) {
-  try {
-    const tokenConfirmedEmail = emailtoken;
-    let username;
-    jwt.verify(tokenConfirmedEmail, process.env.JWT_SECRET, async (err, payload) => {
-      if (err) {
-        console.error(err.message);
-      } else {
-        username = payload.username;
-      }
-    });
-    await usersRepository.confirm({ username });
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 export async function login({ username, password }) {
   const dbUser = await usersRepository.getByUsername({ username });
   if (!dbUser) {
@@ -122,4 +105,22 @@ export async function login({ username, password }) {
   const userDataAndtoken = { ...dbUser, token };
   delete userDataAndtoken.password;
   return userDataAndtoken;
+}
+
+export async function confirm({ emailtoken }) {
+  try {
+    const tokenConfirmedEmail = emailtoken;
+    let username;
+    jwt.verify(tokenConfirmedEmail, process.env.JWT_SECRET, async (err, payload) => {
+      if (err) {
+        console.error(err.message);
+      } else {
+        username = payload.username;
+        console.log(tokenConfirmedEmail, username);
+      }
+    });
+    await usersRepository.confirm({ username });
+  } catch (error) {
+    console.error(error);
+  }
 }

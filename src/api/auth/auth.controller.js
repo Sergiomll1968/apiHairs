@@ -14,7 +14,7 @@ export async function register(req, res) {
     username, password, mail,
   } = req.body;
 
-  let token;
+  let message;
 
   if (!username || !password || !mail) {
     const resobj = { ok: false, message: 'Empty required params' };
@@ -45,7 +45,7 @@ export async function register(req, res) {
   }
 
   try {
-    token = await authService.register({
+    message = await authService.register({
       username, password, mail, rol: 'client',
     });
   } catch (err) {
@@ -55,7 +55,7 @@ export async function register(req, res) {
     return;
   }
 
-  res.json(token);
+  res.json(message);
 }
 
 export async function login(req, res) {
