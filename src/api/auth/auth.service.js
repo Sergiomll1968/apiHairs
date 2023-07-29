@@ -116,7 +116,6 @@ export async function confirm({ emailtoken }) {
         console.error(err.message);
       } else {
         username = payload.username;
-        console.log(tokenConfirmedEmail, username);
       }
     });
     await usersRepository.confirm({ username });
