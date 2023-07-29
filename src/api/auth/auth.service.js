@@ -52,7 +52,7 @@ export async function register({
       },
     });
     const url = process.env.HOST + process.env.CONFIRM_ROUTE + emailToken;
-
+    console.log(url);
     await transporter.sendMail({
       from: '"FullStack PartTime" <correothebridge01@gmail.com>',
       to: mail,
