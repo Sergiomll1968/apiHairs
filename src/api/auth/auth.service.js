@@ -98,7 +98,7 @@ export async function login({ username, password }) {
 
   const isSamePassword = compareSync(password, dbUser.password);
   if (!isSamePassword) {
-    const myError = { ok: false, statusText: 'Wrong credentials password', status: 401 };
+    const myError = { ok: false, message: 'Wrong credentials password', status: 401 };
     throw new Error(JSON.stringify(myError));
   }
 

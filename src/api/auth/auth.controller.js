@@ -63,7 +63,7 @@ export async function login(req, res) {
   let userDataAndToken;
 
   if (!username || !password) {
-    const resobj = { ok: false, statusText: 'Empty required params' };
+    const resobj = { ok: false, message: 'Empty required params' };
     res.json(resobj);
     return;
   }
