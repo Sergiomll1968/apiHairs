@@ -52,8 +52,7 @@ export async function register({
       },
     });
     const url = process.env.HOST + process.env.CONFIRM_ROUTE + emailToken;
-    console.log("🚀 ~ file: auth.service.js:55 ~ HOST:", HOST)
-    console.log("🚀 ~ file: auth.service.js:55 ~ url:", url)
+
     await transporter.sendMail({
       from: '"FullStack PartTime" <correothebridge01@gmail.com>',
       to: mail,
