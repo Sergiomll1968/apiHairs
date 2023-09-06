@@ -65,7 +65,7 @@ export async function register({
     console.error('error', error);
   }
   // const message = 'Please, we&apos;ve sent you an email to confirm your account';
-  const data = { status: '500', message: 'Please, we&apos;ve sent you an email to confirm your account' };
+  const data = { status: 500, message: 'Please, we&apos;ve sent you an email to confirm your account' };
   // return message;
   return data;
 }
